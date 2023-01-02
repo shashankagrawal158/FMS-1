@@ -1,0 +1,24 @@
+<%- include("header") -%>
+    <section class="container forms">
+        <div class="form signup">
+            <div class="form-content">
+                <header>Login In</header>
+                <form action="/" method="post">
+                    <div class="field input-field">
+                        <input type="email" placeholder="Email" name="email" />
+                    </div>
+                    <div class="field input-field">
+                        <input type="password" name="password" placeholder="Enter password"/>
+                    </div>
+                    <div class="field button-field">
+                        <button type="submit" onClick = "eventHandler">Login</button>
+                    </div>
+                </form>
+                <div class="form-link">
+                    <span class="link login-link">Already have an account?</span>
+                    <a href="http://localhost:3000/">SignUp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+<%- include("footer") -%>
