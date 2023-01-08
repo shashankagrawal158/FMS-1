@@ -1,8 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
+const bcrypt=require("bcrypt");
 const app = express();
+app.use(express.json());
 
 app.set('view engine', 'ejs');
 
@@ -19,11 +20,70 @@ mongoose.connect(db_link)
     console.log(err);
 });
 
+// model
+const userSchema=mongoose.Schema({
 
+    
+    email:{
+       type:String,
+       required:true,
+       unique:true
+    },
+    password:{type:String,
+   required:true,
+   minLength:8 //length minimum kitni honi chahiye for validation
+}
+,   confirmPassword:{type:String,
+   
+   minLength:8
+}
+})
+const USERMODEL= new mongoose.model('USERMODEL',userSchema);
+
+//
+
+
+//
 app.route("/login")
 .get(function(req,res){
     res.render("login");
+})
+.post(function(req, res){
+    const username = req.body.email;
+    const password = req.body.password;
+
+    USERMODEL.findOne({email: username}, function(err, foundedUser){
+        // if(foundedUser){
+        //     bcrypt.compare(password, foundedUser.password, function(err, result) {
+        //         if(result) res.render("secrets");
+        //         else{
+        //             console.log("Password entered is incorrect");
+        //         }
+        //     });
+        // }
+        // else{
+        //     console.log("Either you haven't reistered or the email you mentioned is incorrect");
+        // }
+
+        if(foundedUser){
+            if(password === foundedUser.password) {
+            console.log("Matched")
+
+            // yaha successful login ke baad ka page aega
+            res.render("personal");
+            }
+            else{
+                console.log("Incorrect");
+            }
+
+        }
+        else{
+            console.log("User Not Found");
+        }
+    });
 });
+
+
 
 app.route("/")
 
@@ -31,7 +91,7 @@ app.route("/")
 .get(function(req, res){
     res.render("signUp");
 })
-.post(function(req, res){
+.post(async function(req, res){
     const email = req.body.email;
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
@@ -40,7 +100,13 @@ app.route("/")
         alert("Fields are empty!!");
     }
     else{
-        console.log("pass");
+        const user = new USERMODEL({
+            email: req.body.email,
+            password: req.body.password,
+            confirmPassword: req.body.confirmPassword
+        });
+
+        user.save();
     }
 });
 
@@ -188,6 +254,9 @@ app.route("/facultyExperienceMaster")              //GET-POST API FOR facultyExp
         }
     });
 });
+
+
+
 
 app.listen(3000, function(){
     console.log("Sucessfully started on 3000...")

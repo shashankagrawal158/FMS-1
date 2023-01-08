@@ -19,7 +19,7 @@
                     </div>
     
                     <div class="field button-field">
-                        <button type="submit" onClick = "eventHandler">Signup</button>
+                        <button type="submit" id="signup">Signup</button>
                     </div>
                 </form>
                 <div class="form-link">
@@ -29,5 +29,18 @@
             </div>
         </div>
     </section>
-
+        <!-- //axios cdn link  -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+   let btn=document.getElementById('signup');
+    btn.addEventListener('click',async function(e){
+    
+        e.preventDefault();
+        let email=document.querySelector("input[type='email']").value;
+        let password=document.querySelector("input[type='password']").value;
+        let confirmPassword=document.querySelector("input[type='password']").value;
+        let resp=await axios.post('/',{email,password,confirmPassword})
+    console.log('resp',resp);
+    })
+    </script>
 <%- include("footer") -%>
