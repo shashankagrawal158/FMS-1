@@ -53,24 +53,14 @@ app.route("/login")
     const password = req.body.password;
 
     USERMODEL.findOne({email: username}, function(err, foundedUser){
-        // if(foundedUser){
-        //     bcrypt.compare(password, foundedUser.password, function(err, result) {
-        //         if(result) res.render("secrets");
-        //         else{
-        //             console.log("Password entered is incorrect");
-        //         }
-        //     });
-        // }
-        // else{
-        //     console.log("Either you haven't reistered or the email you mentioned is incorrect");
-        // }
 
         if(foundedUser){
             if(password === foundedUser.password) {
             console.log("Matched")
 
             // yaha successful login ke baad ka page aega
-            res.render("personal");
+            
+            res.redirect("/personal");
             }
             else{
                 console.log("Incorrect");
@@ -83,15 +73,20 @@ app.route("/login")
     });
 });
 
+app.route("/personal")
+.get(function(req, res){
+    res.render("personal.ejs");
+})
+.post(function(req, res){
+    console.log(req.body.you);
+});
 
-
-app.route("/")
 
 app.route("/")
 .get(function(req, res){
     res.render("signUp");
 })
-.post(async function(req, res){
+.post(function(req, res){
     const email = req.body.email;
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
@@ -105,9 +100,10 @@ app.route("/")
             password: req.body.password,
             confirmPassword: req.body.confirmPassword
         });
-
         user.save();
+        console.log("Hello");
     }
+    res.render("personal");
 });
 
 
