@@ -21,6 +21,7 @@ mongoose.connect(db_link)
 });
 
 // model
+
 const userSchema=mongoose.Schema({
 
     
@@ -36,14 +37,51 @@ const userSchema=mongoose.Schema({
 ,   confirmPassword:{type:String,
    
    minLength:8
-}
+},
+
 })
 const USERMODEL= new mongoose.model('USERMODEL',userSchema);
 
 //
+                        // schema for paersonal 
+const personalSchema=mongoose.Schema({
 
+        title: {type:String, required:true},
+        firstName:{type:String, required:true} ,
+        middleName:{type:String} ,
+        lastName: {type:String},
+        dateOfBirth:{type:Date, required:true} ,
+        gender: {type:String, required:true},
+        fatherName:{type:String, required:true} ,
+        motherName: {type:String, required:true},
+        martialStatus:{type:String, required:true} ,
+        spouseName: {type:String},
+        houseNo: {type:String, required:true},
+        street: {type:String, required:true},
+        city: {type:String, required:true},
+        state: {type:String, required:true},
+        country:{type:String, required:true} ,
+        pincode: {type:Number, required:true},
+        landlineNo: {type:Number},
+        mobileNo: {type:Number, required:true},
+        alternateMobNo: {type:Number},
+        personalEmail: {type:String,required:true},
+        officialEmail: {type:String, required:true},
+        adhar: {type:Number, required:true},
+        pan: {type:Number, required:true},
+        dateOfJoin: {type:Date, required:true},
+        designation: {type:String, required:true},
+        department:{type:String ,required:true},
+        isLeft: {type:String, required:true},
+        dateOfRelieving: {type:Date, },
+        // loginID:{type:Number, required:true}
+})
 
 //
+                        //model for personal
+const UserPersonalModel=new mongoose.model("UserPersonalModel",personalSchema)
+
+                                // login api
 app.route("/login")
 .get(function(req,res){
     res.render("login");
@@ -60,7 +98,7 @@ app.route("/login")
 
             // yaha successful login ke baad ka page aega
             
-            res.redirect("/personal");
+            // res.redirect("/personal");
             }
             else{
                 console.log("Incorrect");
@@ -78,7 +116,60 @@ app.route("/personal")
     res.render("personal.ejs");
 })
 .post(function(req, res){
-    console.log(req.body.you);
+
+    const personal=new UserPersonalModel({
+
+     title: req.body.title,
+ firstName: req.body.firstName,
+ middleName: req.body.middleName,
+    lastName: req.body.lastName,
+    dateOfBirth: req.body.dateOfBirth,
+ gender: req.body.gender,
+    fatherName: req.body.fatherName,
+    motherName: req.body.motherName,
+     martialStatus:req.body.martialStatus,
+    spouseName:req.body.spouseName,
+    //present 
+ houseNo:req.body.houseNo,
+ street:req.body.street,
+    city:req.body.city,
+ state:req.body.state,
+    country:req.body.country,
+    pincode: req.body.pincode,
+    //permanent
+    phouseNo: req.body.phouseNo,
+    pstreet: req.body.pstreet,
+    pcity: req.body.pcity,
+    pstate: req.body.pstate,
+    pcountry:req.body.pcountry,
+    ppincode:req.body.ppincode,
+    landlineNo:req.body.landlineNo,
+    mobileNo:req.body.mobileNo,
+    alternateMobNo: req.body.alternateMobNo,
+    personalEmail: req.body.personalEmail,
+    officialEmail: req.body.officialEmail,
+    adhar: req.body.adhar,
+    pan: req.body.pan,
+    dateOfJoin: req.body.dateOfJoin,
+ designation: req.body.designation,
+ department:req.body.department,
+    isLeft: req.body.isLeft,
+    dateOfRelieving: req.body.dateOfRelieving,
+    // loginID:req.body.loginID,
+
+    })
+    
+console.log("hello");
+ personal.save(function(err){
+     if(!err){
+         console.log("Added successfully");
+         console.log(req.body);
+        //  res.redirect("/Personal");
+     }
+     else{
+         console.log(err);
+     }
+ });
 });
 
 
@@ -107,149 +198,223 @@ app.route("/")
 });
 
 
-app.route("/facultyPersonal")              //GET-POST API FOR facultyPersonal
+
+                                             //experience master api 
+
+app.route("/experience")              //GET-POST API FOR facultyExperienceMaster
+
 .get(function(req, res){
 
-    res.render("EJS-file");
+
+
+    res.render("facultyExperienceMaster");
+
 })
+
 .post(function(req, res){
 
-    const person = new Model({
-        title: req.body.title,
-        firstName: req.body.firstName,
-        middleName: req.body.middleName,
-        lastName: req.body.lastName,
-        dateOfBirth: req.body.dateOfBirth,
-        gender: req.body.gender,
-        fatherName: req.body.fatherName,
-        motherName: req.body.motherName,
-        martialStatus: req.body.martialStatus,
-        spouseName: req.body.spouseName,
-        houseNo: req.body.houseNo,
-        street: req.body.street,
-        city: req.body.city,
-        state: req.body.state,
-        country: req.body.country,
-        pincode: req.body.pincode,
-        landlineNo: req.body.landlineNo,
-        mobileNo: req.body.mobileNo,
-        alternateMobNo: req.body.alternateMobNo,
-        personalEmai: req.body.personalEmai,
-        personalEmaiAl: req.body.personalEmaiAl,
-        officialEmail: req.body.officialEmail,
-        adhar: req.body.adhar,
-        pan: req.body.pan,
-        dateOfJoin: req.body.dateOfJoin,
-        designation: req.body.designation,
-        isLeft: req.body.isLeft,
-        dateOfRelieving: req.body.dateOfRelieving,
-        loginID: req.body.loginID
-    });
 
-    person.save(function(err){
-        if(!err){
-            console.log("Added successfully");
-            res.redirect("/facultyPersonal");
-        }
-        else{
-            console.log(err);
-        }
-    });
-});
-
-
-app.route("/facultyQualification")              //GET-POST API FOR facultyQualification
-.get(function(req, res){
-
-    res.render("EJS-file");
-})
-.post(function(req, res){
-
-    const personQual = new Model({
-        level: req.body.level,
-        examDegree: req.body.examDegree,
-        school: req.body.school,
-        board: req.body.board,
-        yearOfPassing: req.body.yearOfPassing,
-        maxMarksGrade: req.body.maxMarksGrade,
-        marksObtained: req.body.marksObtained,
-        percMarksObtained: req.body.percMarksObtained,
-        division: req.body.division,
-        achievement: req.body.achievement,
-    });
-
-    personQual.save(function(err){
-        if(!err){
-            console.log("Added successfully");
-            res.redirect("/facultyQualification");
-        }
-        else{
-            console.log(err);
-        }
-    });
-});
-
-
-
-app.route("/facultyPHDQualification")              //GET-POST API FOR facultyPHDQualification
-.get(function(req, res){
-
-    res.render("EJS-file");
-})
-.post(function(req, res){
-
-    const personPHDQual = new Model({
-        collegeDepartment: req.body.collegeDepartment,
-        university: req.body.university,
-        status: req.body.status,
-        dateOfAward: req.body.dateOfAward,
-        thesisTitle: req.body.thesisTitle,
-        registrationDate: req.body.registrationDate,
-        thesisSubmissionDate: req.body.thesisSubmissionDate,
-        detailOfSupervisor: req.body.detailOfSupervisor,
-    });
-
-    personPHDQual.save(function(err){
-        if(!err){
-            console.log("Added successfully");
-            res.redirect("/facultyPHDQualification");
-        }
-        else{
-            console.log(err);
-        }
-    });
-});
-
-
-
-app.route("/facultyExperienceMaster")              //GET-POST API FOR facultyExperienceMaster
-.get(function(req, res){
-
-    res.render("EJS-file");
-})
-.post(function(req, res){
 
     const personExp = new Model({
+
+        faculty_ID: req.body.faculty_ID,
+
         organizName: req.body.organizName,
+
         designation: req.body.designation,
+
         dateOfJoin: req.body.dateOfJoin,
+
         dateOfRelieving: req.body.dateOfRelieving,
+
         payScale: req.body.payScale,
+
         lastSalaryDrawn: req.body.lastSalaryDrawn,
+
         jobProfile: req.body.jobProfile,
+
         reasonForLeaving: req.body.reasonForLeaving,
+
     });
 
+
+
     personExp.save(function(err){
+
         if(!err){
+
             console.log("Added successfully");
-            res.redirect("/facultyExperienceMaster");
+
+            res.redirect("/experience");
+
         }
+
         else{
+
             console.log(err);
+
         }
+
     });
+
 });
+                                        //GET-POST API FOR facultyExperienceMaster
+
+app.route("/experience")            
+
+.get(function(req, res){
+
+
+
+    res.render("facultyExperienceMaster");
+
+})
+
+.post(function(req, res){
+
+
+
+    const personExp = new Model({
+
+        faculty_ID: req.body.faculty_ID,
+
+        organizName: req.body.organizName,
+
+        designation: req.body.designation,
+
+        dateOfJoin: req.body.dateOfJoin,
+
+        dateOfRelieving: req.body.dateOfRelieving,
+
+        payScale: req.body.payScale,
+
+        lastSalaryDrawn: req.body.lastSalaryDrawn,
+
+        jobProfile: req.body.jobProfile,
+
+        reasonForLeaving: req.body.reasonForLeaving,
+
+    });
+
+
+
+    personExp.save(function(err){
+
+        if(!err){
+
+            console.log("Added successfully");
+
+            res.redirect("/experience");
+
+        }
+
+        else{
+
+            console.log(err);
+
+        }
+
+    });
+
+});
+
+                                           //GET-POST API FOR facultyPHDQualification
+
+app.route("/PHD")              
+
+.get(function(req, res){
+
+    res.render("PHDQualification");
+
+})
+
+.post(function(req, res){
+
+
+
+    const personPHDQual = new Model({
+
+        faculty_ID: req.body.faculty_ID,
+
+        collegeDepartment: req.body.collegeDepartment,
+
+        university: req.body.university,
+
+        status: req.body.status,
+
+        dateOfAward: req.body.dateOfAward,
+
+        thesisTitle: req.body.thesisTitle,
+
+        registrationDate: req.body.registrationDate,
+
+        thesisSubmissionDate: req.body.thesisSubmissionDate,
+
+        detailOfSupervisor: req.body.detailOfSupervisor,
+
+    });
+
+
+
+    personPHDQual.save(function(err){
+
+        if(!err){
+
+            console.log("Added successfully");
+
+            res.redirect("/facultyPHDQualification");
+
+        }
+
+        else{
+
+            console.log(err);
+
+        }
+
+    });
+
+});
+
+
+
+// app.route("/facultyQualification")              //GET-POST API FOR facultyQualification
+// .get(function(req, res){
+
+//     res.render("EJS-file");
+// })
+// .post(function(req, res){
+
+//     const personQual = new Model({
+//         level: req.body.level,
+//         examDegree: req.body.examDegree,
+//         school: req.body.school,
+//         board: req.body.board,
+//         yearOfPassing: req.body.yearOfPassing,
+//         maxMarksGrade: req.body.maxMarksGrade,
+//         marksObtained: req.body.marksObtained,
+//         percMarksObtained: req.body.percMarksObtained,
+//         division: req.body.division,
+//         achievement: req.body.achievement,
+//     });
+
+//     personQual.save(function(err){
+//         if(!err){
+//             console.log("Added successfully");
+//             res.redirect("/facultyQualification");
+//         }
+//         else{
+//             console.log(err);
+//         }
+//     });
+// });
+
+
+
+
+
+
+
 
 
 

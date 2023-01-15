@@ -1,0 +1,107 @@
+<%- include("header") -%>
+
+
+
+<h1>Faculty PHD Qualification</h1>
+
+<form className='formCss' method="post" action="/PHD">
+
+    <div className='personal'>
+
+        <div className="chk">
+
+            <h3 style="margin-right:8.65rem;">Faculty ID</h3>
+
+            <input type="text" name="faculty_ID" placeholder="Faculty ID" required/>
+
+        </div>
+
+        <hr/>
+
+        <div className = 'chk'>
+
+            <h3 style="margin-right: 8.65rem">College Department</h3>
+
+            <input type="text" name="collegeDepartment" placeholder='College Department' required/>
+
+        </div>
+
+        <hr/>
+
+        <div className='chk'>
+
+            <h3 style="margin-right: 14.7rem">University</h3>
+
+            <input type="text" placeholder='University' name="university" required/>
+
+        </div>
+
+        <hr/>
+
+        <div className='chk'>
+
+            <h3 style="margin-right: 16.7rem">Status</h3>
+
+            <input type="text" name="status" placeholder='Status' required/>
+
+        </div>
+
+        <hr/>
+
+        <div className='chk'>
+
+            <h3 style="margin-right: 12rem"> Date of Award</h3>
+
+            <input type="text" name="dateOfAward" placeholder='Date of Award' required/>
+
+        </div>
+
+        <hr/>
+
+        <div className='chk'>
+
+            <h3 style="margin-right: 14rem">Thesis title</h3>
+
+            <input type="text" name="thesisTitle"  placeholder='Thesis title'/>
+
+        </div>
+
+        <hr/>
+
+        <div className='chk'>
+
+            <h3 style="margin-right: 10rem">Registration Date</h3>
+
+            <input type="text" name="registrationDate" placeholder='Registration Date' required/>
+
+        </div>
+
+        <hr/>
+
+        <div className='chk'>
+
+          <h3 style="margin-right: 6.2rem">Thesis Submission Date</h3>
+
+          <input type="text" name="thesisSubmissionDate" placeholder='Thesis Submission Date' />
+
+        </div>
+
+        <hr/>
+
+        <div className='chk'>
+
+          <h3 style="margin-right: 8.1rem">Detail of Supervisors</h3>
+
+          <input type="text" name="detailOfSupervisor" placeholder='Detail of Supervisors' />
+
+        </div>
+
+        <button className='button' type='submit'>Save</button>
+
+    </div>
+
+</form>
+
+
+
+<%- include("footer") -%>

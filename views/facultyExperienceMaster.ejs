@@ -1,0 +1,107 @@
+<%- include("header") -%>
+
+
+
+    <h1>Experience</h1>
+
+    <div className='personal'>
+
+        <form action="/experience" method="post" className = 'formCss'>
+
+            <div className="chk">
+
+                <h3 style="margin-right:8.65rem;">Faculty ID</h3>
+
+                <input type="text" name="faculty_ID" placeholder="Faculty ID"/>
+
+            </div>
+
+            <hr/>
+
+            <div className='chk'>
+
+                <h3 style="margin-right: 8.65rem">Organization Name</h3>
+
+                <input type="text" name="organizName" placeholder='Organization Name'/>
+
+            </div>
+
+            <hr/>
+
+            <div className='chk'>
+
+                <h3 style="margin-right: 13.1rem">Designation</h3>
+
+                <input type="text" placeholder='Designation' name="designation"/>
+
+            </div>
+
+            <hr/>
+
+            <div className='chk'>
+
+                <h3 style="margin-right: 11.25rem">Date of Joining</h3>
+
+                <input style="width: 11.35rem" type="date" name="dateOfJoin" placeholder='Date of Joining'/>
+
+            </div>
+
+            <hr/>
+
+            <div className='chk'>
+
+                <h3 style="margin-right: 10rem">Date of Relieving</h3>
+
+                <input style="width: 11.35rem" type="date" name="dateOfRelieving" placeholder='Date of Relieving'/>
+
+            </div>  
+
+            <hr/>
+
+            <div className='chk'>
+
+                <h3 style="margin-right: 14.2rem">Pay Scale</h3>
+
+                <input type="text" name="payScale" placeholder='Pay Scale'/>
+
+            </div>  
+
+            <hr/>
+
+            <div className='chk'>
+
+                <h3 style="margin-right: 9.4rem">Last Salary Drawn</h3>
+
+                <input type="text" name="lastSalaryDrawn" placeholder='Last Salary Drawn' />
+
+            </div>  
+
+            <hr/>
+
+            <div className='chk'>
+
+                <h3 style="margin-right: 13.7rem">Job Profile</h3>
+
+                <input type="text" name="jobProfile" placeholder='Job Profile'/>
+
+            </div>  
+
+            <hr/>
+
+            <div className='chk'>
+
+                <h3 style="margin-right: 8.65rem">Reason for Leaving</h3>
+
+                <input type="text" name="reasonForLeaving" placeholder='Reason for leaving'/>
+
+            </div>
+
+            <button className='button' type='submit'>Save</button>
+
+        </form>
+
+    </div>
+
+
+
+<%- include("footer") -%>

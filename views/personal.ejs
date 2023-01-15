@@ -191,59 +191,55 @@
 
   <%- include("header") -%>
   <h1>Personal Profile</h1>
-  <!-- <div className="personal"> -->
+  <div className="personal"> -->
     <form action="/personal" method="post">
-      <div className="chk">
+      <!-- <div className="chk">
         <h3 style="margin-right:8.65rem;">Faculty ID</h3>
-        <input type="text" id="title" placeholder="Faculty ID" />
+        <input type="text"  placeholder="Faculty ID" />
       </div>
-      <hr />
+      <hr /> -->
       <div className="chk">
         <h3 style="margin-right: 5rem">Personal Details</h3>
-        <select style= "width: 183px">
-          <option value="Gender" required>Title</option>
-          <option>Prof.</option>
-          <option>Dr.</option>
-          <option>Ms.</option>
-          <option>Mr.</option>
+        <select name="title" style= "width: 183px" required> 
+          <option value="Gender" >Title</option>
+          <option value="Prof.">Prof.</option>
+          <option value="Dr.">Dr.</option>
+          <option value="Ms.">Ms.</option>
+          <option value="Mr.">Mr.</option>
         </select>
-        <input type="text" id="title" placeholder="First Name" required/>
-        <input type="text" id="title" placeholder="Middle Name" />
-        <input type="text" id="title" placeholder="Last Name" required/>
+        <input type="text" name="firstName" placeholder="First Name" required/>
+        <input type="text"  name="middleName"placeholder="Middle Name" />
+        <input type="text" name="lastName" placeholder="Last Name" required/>
       </div>
       <div className="chk align">
         <input
-          type="date"
-          id="Date of Birth"
-          placeholder="Date Of Birth"
-          required
-          style="width: 185px"/>
-        <select style="width: 183px">
+          type="date" name="dateOfBirth" placeholder="Date Of Birth" required style="width: 185px"/>
+        <select name="gender" style="width: 183px">
           <option value="Gender">Gender</option>
-          <option>Male</option>
-          <option>Female</option>
-          <option>Transgender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Transgender">Transgender</option>
         </select>
       </div>
       <hr />
       <div className="chk">
         <h3 style="margin-right: 6.1rem">Parent Details</h3>
-        <input type="text" placeholder="Father's Name" required />
-        <input type="text" placeholder="Mother's Name" required />
+        <input type="text"name="fatherName" placeholder="Father's Name" required />
+        <input type="text" name="motherName" placeholder="Mother's Name" required />
       </div>
       <hr />
       <div className="chk align2">
         <h3 style="margin-right: 6.2rem">Martial Status</h3>
-        <select style="width: 183px" name = "you" onClick={handleChange(this)}>
+        <select style="width: 183px" name = "martialStatus" onClick={handleChange(this)}>
           <option value="Martial_Status">Martial Status</option>
-          <option value="Married" name = "Married">Married</option>
-          <option>Unmarried</option>
-          <option>Widow</option>
-          <option>Divorced</option>
+          <option value="Married" >Married</option>
+          <option value="Unmarried">Unmarried</option>
+          <option value="Widow">Widow</option>
+          <option value="Divorced">Divorced</option>
         </select>
 
         <div id="ifYes" style="display: none;">
-          <input type="text" id="spouse_name" placeholder="Spouse Name" required/>
+          <input type="text" id="spouse_name" name="spouseName" placeholder="Spouse Name" required/>
         </div>
 
         <script>
@@ -259,119 +255,74 @@
        
       </div>
       <hr />
+                                               <!-- present address -->
       <div className="chk align2">
         <h3 style="margin-right: 9.53rem">Present Address</h3>
-        <input type="text"id="House No Floor"placeholder="House No Floor"required/>
-        <input type="text" id="Street/Locality"placeholder="Street/Locality" required />
-        <input type="text" id="City" placeholder="City" required />
-        <input type="text" id="State" placeholder="State" required />
+        <input type="text"id="House No Floor" name="houseNo"placeholder="House No Floor"required/>
+        <input type="text" id="Street/Locality" name="street" placeholder="Street/Locality" required />
+        <input type="text" id="City"name="city" placeholder="City" required />
+        <input type="text" id="State" name="state" placeholder="State" required />
       </div>
       <div className="chk align">
-        <input type="text" id="Country" placeholder="Country" required/>
-        <input type="number" id="Pincode" placeholder="Pincode" required />
+        <input type="text" id="country"  name="country"placeholder="Country" required/>
+        <input type="number" id="pincode" name="pincode" placeholder="Pincode" required />
       </div>
       <div className="address">
       <input className="box" type='checkbox' name="filladdress" id="filladdress"   onClick="fillAddress()" />
         <label className="labell">Permanent Address is same as Present Address </label>
       </div>
+                                               <!-- peermanent address -->
       <div className="chk align2">
         <h3 style="margin-right: 9.53rem"> Permanent Address</h3>
-        <input
-          type="text"
-          id="p House No Floor"
-          placeholder="House No Floor"
-          required
-        />
-        <input
-          type="text"
-          id="p Street/Locality"
-          placeholder="Street/Locality"
-          required
-        />
-        <input type="text" id="p City" placeholder="City" required />
-        <input type="text" id="p State" placeholder="State" required />
+        <input type="text"id="p House No Floor" name="phouseNo" placeholder="House No Floor" required />
+        <input type="text" name="pstreet"id="p Street/Locality"placeholder="Street/Locality"required/>
+        <input type="text" id="p City" placeholder="City"name="pcity" required />
+        <input type="text" id="p State"name="pstate" placeholder="State" required />
       </div>
       <div className="chk align">
-        <input type="text" id="p Country" placeholder="Country" required/>
-        <input type="number" id="p Pincode" placeholder="Pincode" required />
+        <input type="text" id="p Country" name="pcountry"placeholder="Country" required/>
+        <input type="number" id="p Pincode" name="ppincode"placeholder="Pincode" required />
       </div>
       <hr />
       <div className="chk align2">
         <h3 style="margin-right: 5.15rem">Contact Details</h3>
-        <input type="number" id=" LandLine No" placeholder="LandLine No." />
-        <input type="number" id=" Mobile No" placeholder="Mobile.No" required/>
+        <input type="number" id=" LandLine No" name="landlineNo" placeholder="LandLine No." />
+        <input type="number" id=" Mobile No" name="mobileNo" placeholder="Mobile.No" required/>
         <input
-          type="number"
-          id="Alternate_Mobile_No"
-          placeholder="Alternate Mobile No"
-          required
-        />
+          type="number" id="Alternate_Mobile_No"mame="alternateMobileNo" placeholder="Alternate Mobile No" required />
       </div>
       <hr />
       <div className="chk align2">
         <h3 style="margin-right: 11.85rem">Mail</h3>
-        <input
-          type="email"
-          id=" Personal Email Id"
-          placeholder="Personal Mail ID"
-          required
-        />
-        <input
-          type="email"
-          id="Personal Alternate Email ID"
-          placeholder="Personal Alternate Mail ID"
-        />
-        <input
-          type="email"
-          id=" Official Email ID"
-          placeholder="Official Mail ID"
-          required
-        />
+        <input type="email" name="personalEmail" placeholder="Personal Mail ID"required/>
+        
+        <input type="email"name="officialEmail" placeholder="Official Mail ID" required/>
       </div>
       <hr />
       <div className="chk align2">
         <h3 style="margin-right: 9.8rem">Aadhar</h3>
-        <input
-          type="text"
-          id=" Aadhar Number"
-          placeholder="Aadhar Number"
-          required
-        />
+        <input type="text" name="adhar" placeholder="Aadhar Number" required/>
       </div>
       <div className="chk">
         <h3 style="margin-right: 6.7rem">PAN Number</h3>
-        <input type="text" id=" Aadhar Number" placeholder="PAN Number" />
+        <input type="text" name="pan" placeholder="PAN Number" />
       </div>
       <hr />
       <div className="chk align2">
         <h3 style="margin-right: 12.7rem">HR</h3>
-        <input
-          type="text"
-          id=" Date of Joining"
-          placeholder="Date of Joining"
-        />
-        <input
-          type="text"
-          id=" Date of Joining"
-          placeholder="Designation"
-        />
-        <input type="text" id=" Date of Joining" placeholder="Department" />
+        <input type="text" name="dateOfJoin" placeholder="Date of Joining"/>
+        <input type="text" name="designation" placeholder="Designation"/>
+        <input type="text" name="department" placeholder="Department" />
       </div>
       <div className="chk">
-        <select
-          style="width: 181.5px,margin-left, 14.2rem; margin-right: 1rem"
-        >
+        <select name="isLeft" style="width: 181.5px,margin-left, 14.2rem; margin-right: 1rem" >
           <option value="Is Left">Is Left</option>
-          <option>YES</option>
-          <option>No</option>
+          <option value="Yes">YES</option>
+          <option value="No">No</option>
         </select>
-        <input
-          type="text"
-          id="Date of Relieving"
-          placeholder="Date of Relieving"
-        />
+        <input type="text" name="dateOfRelieving" placeholder="Date of Relieving"/>
       </div>
-      <button type="submit" ><a href="/login">Save</a></button>
+      <button type="submit" onclick="check()">Save</button>
     </form>
   <!-- </div> -->
 <script>
@@ -383,8 +334,8 @@ var housenof=document.getElementById("House No Floor").value
 var streetAddress = document.getElementById("Street/Locality").value
 var city = document.getElementById("City").value
 var state = document.getElementById("State").value
-var country = document.getElementById("Country").value
-var pincode = document.getElementById("Pincode").value
+var country = document.getElementById("country").value
+var pincode = document.getElementById("pincode").value
 
 document.getElementById("p House No Floor").value=housenof
  document.getElementById("p Street/Locality").value=streetAddress
@@ -401,6 +352,9 @@ document.getElementById("p Country").value=country
 document.getElementById("p Country").value=""
  document.getElementById("p Pincode").value=""
     }
+  }
+  function check(){
+    console.log("clicked");
   }
 </script>
   <%- include("footer") -%>
