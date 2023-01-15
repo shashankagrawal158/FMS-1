@@ -62,6 +62,12 @@ const personalSchema=mongoose.Schema({
         state: {type:String, required:true},
         country:{type:String, required:true} ,
         pincode: {type:Number, required:true},
+        phouseNo:{type:String, required:true} ,
+        pstreet: {type:String, required:true},
+        pcity: {type:String, required:true},
+        pstate: {type:String, required:true},
+        pcountry:{type:String, required:true},
+        ppincode:{type:Number, required:true},
         landlineNo: {type:Number},
         mobileNo: {type:Number, required:true},
         alternateMobNo: {type:Number},
@@ -69,11 +75,11 @@ const personalSchema=mongoose.Schema({
         officialEmail: {type:String, required:true},
         adhar: {type:Number, required:true},
         pan: {type:Number, required:true},
-        dateOfJoin: {type:Date, required:true},
+        dateOfJoin: {type:String, required:true},
         designation: {type:String, required:true},
         department:{type:String ,required:true},
         isLeft: {type:String, required:true},
-        dateOfRelieving: {type:Date, },
+        dateOfRelieving: {type:String },
         // loginID:{type:Number, required:true}
 })
 
@@ -110,7 +116,7 @@ app.route("/login")
         }
     });
 });
-
+                                                // personal page api
 app.route("/personal")
 .get(function(req, res){
     res.render("personal.ejs");
@@ -164,7 +170,7 @@ console.log("hello");
      if(!err){
          console.log("Added successfully");
          console.log(req.body);
-        //  res.redirect("/Personal");
+         res.redirect("/experience");
      }
      else{
          console.log(err);
@@ -258,66 +264,7 @@ app.route("/experience")              //GET-POST API FOR facultyExperienceMaster
     });
 
 });
-                                        //GET-POST API FOR facultyExperienceMaster
-
-app.route("/experience")            
-
-.get(function(req, res){
-
-
-
-    res.render("facultyExperienceMaster");
-
-})
-
-.post(function(req, res){
-
-
-
-    const personExp = new Model({
-
-        faculty_ID: req.body.faculty_ID,
-
-        organizName: req.body.organizName,
-
-        designation: req.body.designation,
-
-        dateOfJoin: req.body.dateOfJoin,
-
-        dateOfRelieving: req.body.dateOfRelieving,
-
-        payScale: req.body.payScale,
-
-        lastSalaryDrawn: req.body.lastSalaryDrawn,
-
-        jobProfile: req.body.jobProfile,
-
-        reasonForLeaving: req.body.reasonForLeaving,
-
-    });
-
-
-
-    personExp.save(function(err){
-
-        if(!err){
-
-            console.log("Added successfully");
-
-            res.redirect("/experience");
-
-        }
-
-        else{
-
-            console.log(err);
-
-        }
-
-    });
-
-});
-
+//                                        
                                            //GET-POST API FOR facultyPHDQualification
 
 app.route("/PHD")              
